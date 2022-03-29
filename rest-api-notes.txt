@@ -77,6 +77,8 @@ Filtering and Pagination
 - Pagination through limit (no of queries) and offset (start of queries):  ?limit=20&offset=0
 
 
+
+
 Guiding Principles of REST :
 -----------------------------
 - The six guiding principles or constraints of the RESTful architecture are:
