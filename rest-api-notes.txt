@@ -1,0 +1,134 @@
+REST APIs
+===========
+
+Intro
+------
+- REST is an acronym for REpresentational State Transfer
+- REST is web standards based architecture and uses HTTP Protocol. There are different HTPPS methods that implemennt REST, such as GET, POST, PUT.
+- It revolves around resource where every component is a resource and a resource is accessed by a common interface using HTTP standard methods.
+
+More about REST
+---------------
+- REST APIs are all about transfering data from one layer of system to another layer of system, like Client or Server. Or between two servers
+- The data is the resource.
+- Let's say we are designing a web app for ecommerce company. Now, the resource (data) can be a customer. This is stored in a database.
+- This resource has to be transferred from one storage to another. Or one layer to another. When client is trying to interact with server, this resource has to be written to the client. 
+- The representation of data that stays in servver, might not be the same as representation as seen on the UI app. i.e. for saame data we have two different representation.
+- Eg: server might store the client informationn in form of tables and client shows it in form of UI. This data would be transferred in a JSON format. 
+- When this resource gets updated (let's say change in name) the resource state changes, and hence its representational state also changes. 
+
+- REST APIs are all about managing these resources, representing this resources on differennt layer and passing representational state from one layer to another. 
+- This is done over HTTP protocol using REST APIs. 
+
+
+Resources (URI)
+----------
+- In REST architecture, a REST Server simply provides access to resources and REST client accesses and modifies the resources. Here each resource is identified by URIs/ global IDs. 
+- REST uses various representation to represent a resource like text, JSON, XML. JSON is the most popular one.
+- Eg: https://mystoreapp/customer/1   this is going to point to a resource in our system, which is a customer record. This URI is a.k.a API Endpoint or Path. 
+- There are different methodds like GET, POST to interact and modify this resource.
+
+
+URI Path and Query Parameter
+----------------------------
+- Path parameter- variable in URI path that point to specific resource
+- Eg: https://mystoreapp/customer/1 - 
+	- here mystoeapp is the domain name server
+	- customer is a string
+	- /1 is a path parameter - for customer 2 we will put /2
+
+- Query parameter- variable in URI path that queries/filters through a list of resource
+- Eg: https://mystoreapp/customers?name=abc  
+	- to get all the customers whose name has "abc" in it
+
+
+Headers
+--------
+- Headers are set of attributes that corresponds to to any meta-data associated with API request. 
+- Headers dont have anything to do with actual resource. 
+- Eg: content-type as JSON, language as english, authorization headers etc.
+
+
+Request Payload and Response Body
+---------------------------------
+- Whenever we want to modify the state of a resource, then we send some data with request that we want to update
+- We will send a request payload with the URI. That body or JSON that we send with request is known as request payload.
+- Whatever response we get as a result of API call is known as Response Body.
+
+Response Codes
+--------------
+- With every REST API implemented over HTTP, we get some status code that tries to tell about the response 
+-Eg:
+	- 2xx : success
+	- 3xx : redirection and others
+	- 4xx : problem on client side (incorrect email/ number)
+	- 5xx : problem on server side
+
+
+RESTful APIs
+-------------
+- Web services based on REST Architecture are known as RESTful web services. 
+- These webservices uses HTTP methods to implement the concept of REST architecture.
+
+
+Filtering and Pagination
+------------------------
+- Filtering through search parameters such as:  ?name=abc
+- Pagination through limit (no of queries) and offset (start of queries):  ?limit=20&offset=0
+
+
+Guiding Principles of REST :
+-----------------------------
+- The six guiding principles or constraints of the RESTful architecture are:
+1. Uniform Interface
+2. Stateless
+3. Cacheable
+4. Client-Server
+5. Layered System
+6. Code on Demand (optional)
+
+
+Uniform Interface
+-----------------
+By applying the principle of generality to the components interface, we can simplify the overall system architecture and improve the visibility of interactions.
+
+Multiple architectural constraints help in obtaining a uniform interface and guiding the behavior of components.
+
+The following four constraints can achieve a uniform REST interface:
+
+- Identification of resources – The interface must uniquely identify each resource involved in the interaction between the client and the server.
+
+- Manipulation of resources through representations – The resources should have uniform representations in the server response. API consumers should use these representations to modify the resources state in the server.
+
+- Self-descriptive messages – Each resource representation should carry enough information to describe how to process the message. It should also provide information of the additional actions that the client can perform on the resource.
+
+- Hypermedia as the engine of application state – The client should have only the initial URI of the application. The client application should dynamically drive all other resources and interactions with the use of hyperlinks.
+
+
+Client-server
+-------------
+The client-server design pattern enforces the separation of concerns, which helps the client and the server components evolve independently.
+
+By separating the user interface concerns (client) from the data storage concerns (server), we improve the portability of the user interface across multiple platforms and improve scalability by simplifying the server components.
+
+While the client and the server evolve, we have to make sure that the interface/contract between the client and the server does not break.
+
+Stateless
+----------
+- Statelessness mandates that each request from the client to the server must contain all of the information necessary to understand and complete the request.
+- The server cannot take advantage of any previously stored context information on the server.
+- For this reason, the client application must entirely keep the session state.
+
+Cacheable
+---------
+- The cacheable constraint requires that a response should implicitly or explicitly label itself as cacheable or non-cacheable.
+- If the response is cacheable, the client application gets the right to reuse the response data later for equivalent requests and a specified period.
+
+Layered system
+---------------
+- The layered system style allows an architecture to be composed of hierarchical layers by constraining component behavior.
+- For example, in a layered system, each component cannot see beyond the immediate layer they are interacting with.
+
+Code on demand (optional)
+--------------------------
+REST also allows client functionality to extend by downloading and executing code in the form of applets or scripts.
