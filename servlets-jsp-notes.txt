@@ -1,0 +1,156 @@
+SERVLETS AND JSPs
+===================
+
+- Servlet is used to create a web application (resides at server side and generates a dynamic web page).
+
+
+Servlet Container
+------------------
+- It provides the runtime environment for JavaEE (j2ee) applications. 
+- The client/user can request only a static WebPages from the server. If the user wants to read the web pages as per input then the servlet container is used in java.
+- The servlet container is the part of web server which can be run in a separate process. 
+
+Servlet API
+------------
+- The javax.servlet and javax.servlet.http packages represent interfaces and classes for servlet api.
+
+Servlet Interface
+------------------
+- Servlet interface provides commonbehavior to all the servlets. Servlet interface defines methods that all servlets must implement.
+- Servlet interface needs to be implemented for creating any servlet (either directly or indirectly). 
+- It provides 3 life cycle methods that are used to initialize the servlet, to service the requests, and to destroy the servlet and 2 non-life cycle methods.
+- The init(), service() and destroy() are the life cycle methods of servlet.
+
+Creating a Servlet (https://www.javatpoint.com/steps-to-create-a-servlet-using-tomcat-server)
+------------------
+
+1. Create a directory structures
+- The directory structure defines that where to put the different types of files so that web container may get the information and respond to the client.
+- The web.xml file must be under the WEB-INF/ folder.
+- The servlet class file must be in the WEB-INF/classes/ folder. 
+
+2. Create a Servlet
+- The HttpServlet class is widely used to create the servlet because it provides methods to handle http requests such as doGet(), doPost, doHead() etc.
+
+3. Compile the servlet
+- For compiling the Servlet, servlet-api.jar file is required, which is done by providing class path.
+- javac -cp /opt/tomcat/lib/servlet-api.jar DemoServlet.java
+- Put the java file in any folder. After compiling the java file, paste the class file of servlet in WEB-INF/classes directory.
+
+4. Create the deployment descriptor (web.xml file)
+- The deployment descriptor is an xml file, from which Web Container gets the information about the servet to be invoked.
+- There are many elements in the web.xml file. Here is given some necessary elements to run the simple servlet program.
+
+--web.xml file--
+<web-app>  
+  
+<servlet>  
+<servlet-name>sonoojaiswal</servlet-name>  
+<servlet-class>DemoServlet</servlet-class>  
+</servlet>  
+  
+<servlet-mapping>  
+<servlet-name>sonoojaiswal</servlet-name>  
+<url-pattern>/welcome</url-pattern>  
+</servlet-mapping>  
+  
+</web-app>  
+
+----
+
+5. Deploy the servlet project
+- Copy the project and paste it in the apache-tomcat/webapps folder .
+- there are several ways to deploy the project. They are as follows:
+	By copying the context(project) folder into the webapps directory
+	By copying the war folder into the webapps directory
+	By selecting the folder path from the server
+	By selecting the war file from the server
+
+- create war file, and paste it inside the webapps directory. To do so, you need to use jar tool to create the war file. Go inside the project directory (before the WEB-INF), then write:
+
+## jar cvf myproject.war *  
+
+- Creating war file has an advantage that moving the project from one location to another takes less time.
+
+6. 6) How to access the servlet
+- Open broser and write http://hostname:portno/contextroot/urlpatternofservlet. For example:
+
+
+War File
+--------
+- A war (web archive) File contains files of a web project. It may have servlet, xml, jsp, image, html, css, js etc. files.
+
+
+
+
+How web container handles the servlet request?
+-------------------------------------------------
+The web container is responsible to handle the request. Let's see how it handles the request.
+
+- maps the request with the servlet in the web.xml file.
+- creates request and response objects for this request
+- calls the service method on the thread
+- The public service method internally calls the protected service method
+- The protected service method calls the doGet method depending on the type of request.
+- The doGet method generates the response and it is passed to the client.
+- After sending the response, the web container deletes the request and response objects. The - thread is contained in the thread pool or deleted depends on the server implementation.
+
+Session Tracking
+=================
+- Session Tracking is a way to maintain state (data) of an user. It is also known as session management in servlet.
+- HTTP is stateless that means each request is considered as the new request. It is shown in the figure given below:
+- Http protocol is a stateless so we need to maintain state using session tracking techniques. Each time user requests to the server, server treats the request as the new request. So we need to maintain the state of an user to recognize to particular user.
+
+Session Tracking Techniques
+----------------------------
+There are four techniques used in Session tracking:
+- Cookies
+- Hidden Form Field
+- URL Rewriting
+- HttpSession
+
+Cookies in Servlet
+-------------------
+- A cookie is a small piece of information that is persisted between the multiple client requests.
+-  In cookies technique, we add cookie with response from the servlet. So cookie is stored in the cache of the browser. After that if request is sent by the user, cookie is added with request by default. Thus, we recognize the user as the old user.
+- Advantage of Cookies
+	- Simplest technique of maintaining the state.
+	- Cookies are maintained at client side.
+- Disadvantage of Cookies
+	- It will not work if cookie is disabled from the browser.
+	- Only textual information can be set in Cookie object.
+- javax.servlet.http.Cookie class provides the functionality of using cookies.
+-delete Cookie - It is mainly used to logout or signout the user.
+
+HttpSession Interface
+---------------------
+-Container creates a session id for each user. The container uses this id to identify the particular user.
+- An object of HttpSession can be used to perform two tasks:
+	- bind objects
+	- view and manipulate information about a session, such as the session identifier, creation time, and last accessed time
+
+JDBC (Java Database Connectivity)
+----
+- CRUD (Create, Read, Update and Delete) application 
+- JDBC is a Java API to connect and execute the query with the database. 
+- java.sql package contains classes and interfaces for JDBC API
+- driver class for the mysql database is com.mysql.jdbc.Driver.
+- Connection URL: The connection URL for the mysql database is jdbc:mysql://localhost:3306/employee where jdbc is the API, mysql is the database, localhost is the server name on which mysql is running, we may also use IP address, 3306 is the port number and employee is the database name. 
+
+
+Annotation
+----------
+- Annotation represents the metadata. If you use annotation, deployment descriptor (web.xml file) is not required.
+- @WebServlet annotation is used to map the servlet with the specified name.
+
+Servlets Tasks
+==============
+- Hello world servlet
+- Parameter demo
+- Request dispatcher/ Redirect
+- HttpSession, Cookies
+- Filter, authentication
+- Database Mysql, CRUD (tutorials point)
+- Pagination
+- Servlet with annotation
+- Debugging (tutorials point)

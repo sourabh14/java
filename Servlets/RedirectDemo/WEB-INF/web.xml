@@ -1,0 +1,11 @@
+<web-app>
+	<servlet>
+	    <servlet-name>RedirectServlet</servlet-name>
+	    <servlet-class>RedirectServlet</servlet-class>
+  	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>RedirectServlet</servlet-name>
+		<url-pattern>/search</url-pattern>
+	</servlet-mapping>
+</web-app>
